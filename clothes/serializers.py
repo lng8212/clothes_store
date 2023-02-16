@@ -4,7 +4,7 @@ from .models import *
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ('product_name', 'category', 'price', 'totalQuantity','description','imageURL')
+        fields = ('id','product_name', 'category', 'price', 'totalQuantity','description','imageURL')
 
     #product_name = models.CharField(max_length=255)
     # category = models.CharField(max_length=255)
@@ -16,7 +16,7 @@ class ProductSerializer(serializers.ModelSerializer):
 class ProductOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductOrder
-        fields = {'product_name', 'total_price','user_id','payment_method', 'order_date'}
+        fields = ('product_name', 'total_price','user_id','payment_method', 'order_date')
 
 
     # product_name = models.CharField(max_length=255)
@@ -28,12 +28,12 @@ class ProductOrderSerializer(serializers.ModelSerializer):
 class CartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cart
-        fields = {'date'}
+        fields = ('id','date')
 
 class ProductItemSerializer (serializers.ModelSerializer):
     class Meta:
         model = ProductItem
-        fields = {'product_id', 'order_id','cart_id','quantity'}
+        fields = ('product_id', 'order_id','cart_id','quantity')
 
     # product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     # order_id = models.ForeignKey(ProductOrder, on_delete=models.CASCADE)
