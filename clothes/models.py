@@ -29,8 +29,8 @@ class Cart(models.Model):
 
 class ProductItem(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    order_id = models.ForeignKey(ProductOrder, on_delete=models.CASCADE)
-    cart_id = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    order_id = models.ForeignKey(ProductOrder, on_delete=models.CASCADE, null=True)
+    cart_id = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True)
     quantity = models.FloatField()
 
     def __str__(self):
