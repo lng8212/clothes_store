@@ -25,7 +25,7 @@ class ProductOrder(models.Model):
 class Cart(models.Model):
     date = models.DateField(auto_now_add=True)
     def __str__(self):
-       return self.date
+       return str(self.date)
 
 class ProductItem(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
