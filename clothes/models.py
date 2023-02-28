@@ -13,14 +13,14 @@ class Product(models.Model):
        return self.product_name
 
 class ProductOrder(models.Model):
-    product_name = models.CharField(max_length=255)
+    order_status = models.CharField(max_length=255)
     total_price = models.FloatField()
     user_id = models.CharField(max_length=255)
     payment_method = models.CharField(max_length=255)
     order_date = models.DateField()
 
     def __str__(self):
-       return self.product_name
+       return str(self.order_date)
 
 class Cart(models.Model):
     date = models.DateField(auto_now_add=True)
