@@ -33,7 +33,7 @@ class CartSerializer(serializers.ModelSerializer):
 class ProductItemSerializer (serializers.ModelSerializer):
     class Meta:
         model = ProductItem
-        fields = ('product_id', 'order_id','cart_id','quantity')
+        fields = ('id','product_id', 'order_id','cart_id','quantity')
 
     # product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     # order_id = models.ForeignKey(ProductOrder, on_delete=models.CASCADE)

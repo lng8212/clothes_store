@@ -18,3 +18,10 @@ def product(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['POST'])
+def productByCategory(request, category):
+    if(request.method == "POST"):
+        products = Product.objects.filter(category = category)
+        serializer = ProductSerializer(products, many = True)
+        return Response(serializer.data)
