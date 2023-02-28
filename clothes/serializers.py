@@ -16,7 +16,7 @@ class ProductSerializer(serializers.ModelSerializer):
 class ProductOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductOrder
-        fields = ('product_name', 'total_price','user_id','payment_method', 'order_date')
+        fields = ('id','order_status', 'total_price','user_id','payment_method', 'order_date')
 
 
     # product_name = models.CharField(max_length=255)
@@ -39,3 +39,16 @@ class ProductItemSerializer (serializers.ModelSerializer):
     # order_id = models.ForeignKey(ProductOrder, on_delete=models.CASCADE)
     # cart_id = models.ForeignKey(Cart, on_delete=models.CASCADE)
     # quantity = models.FloatField()
+    
+class CreateOrderSerializer(serializers.Serializer):
+    product_ids = serializers.ListField(child=serializers.IntegerField())
+    user_id = serializers.CharField()
+    payment_method = serializers.CharField()
+    total_price = serializers.FloatField()
+    
+class GetCartSerializer(serializers.Serializer):
+    product_item_id = serializers.IntegerField
+    product_ids = serializers.ListField(child=serializers.IntegerField())
+    user_id = serializers.CharField()
+    payment_method = serializers.CharField()
+    total_price = serializers.FloatField()

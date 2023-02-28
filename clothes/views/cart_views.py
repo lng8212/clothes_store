@@ -2,7 +2,6 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework.parsers import JSONParser 
 from ..models import Product
 from ..serializers import *
 import json
@@ -11,11 +10,17 @@ import json
 def getCart(request):
     if(request.method == 'GET'):
         cart = Cart.objects.get(id=1)
-        # print(cart)
-        product_items =  ProductItem.objects.filter(cart_id=cart.id)
-        # print(product_items)
-        serializer = ProductItemSerializer(product_items, many = True)
-        return Response(serializer.data)
+        product_items = ProductItem.objects.filter(cart_id=cart.id)
+        cart_items = []
+        for product_item in product_items:
+            product_serializer = ProductSerializer(product_item.product_id)
+            item_serializer = ProductItemSerializer(product_item)
+            cart_items.append({
+                'product': product_serializer.data,
+                'item': item_serializer.data,
+            })
+        
+        return Response(cart_items)
     
 @api_view(['POST'])
 def addToCart(request):
